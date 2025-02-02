@@ -10,6 +10,7 @@ import {
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import Link from 'next/link';
 
 
 const LoginPage = () => {
@@ -43,7 +44,9 @@ const LoginPage = () => {
                                 </form>
                             </CardContent>
                             <CardFooter className="flex justify-between">
-                                <Button variant="outline">Ακύρωση</Button>
+                                <Button variant="outline">
+                                    <Link href='/'>Ακύρωση</Link>
+                                </Button>
                                 <Button>Είσοδος</Button>
                             </CardFooter>
                         </Card>
@@ -73,7 +76,9 @@ const LoginPage = () => {
                                     </form>
                                 </CardContent>
                                 <CardFooter className="flex justify-between">
-                                    <Button variant="outline">Ακύρωση</Button>
+                                    <Button variant="outline">
+                                        <Link href='/'>Ακύρωση</Link>
+                                    </Button>
                                     <Button>Εγγραφή</Button>
                             </CardFooter>
                             </Card>
