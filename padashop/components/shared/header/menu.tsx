@@ -13,7 +13,7 @@ const Menu = () => {
                     </Button>
                     <Button asChild className='bg-teal-800 hover:bg-teal-600'>
                         <Link href='/login'>
-                            <UserIcon /> Σύνδεση / Εγγραφή
+                            <UserIcon /> Είσοδος / Εγγραφή
                         </Link>
                     </Button>
             </nav>
@@ -34,7 +34,7 @@ const Menu = () => {
                             </Button>
                             <Button asChild className='bg-teal-800 hover:bg-teal-600'>
                                 <Link href='/login'>
-                                    <UserIcon /> Σύνδεση / Εγγραφή
+                                    <UserIcon /> Είσοδος / Εγγραφή
                                 </Link>
                             </Button>
                     </SheetContent>
