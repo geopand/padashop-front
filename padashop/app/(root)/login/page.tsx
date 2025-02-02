@@ -50,10 +50,6 @@ const LoginPage = () => {
                                 <Button>Είσοδος</Button>
                             </CardFooter>
                         </Card>
-
-
-
-
                     </TabsContent>
                     <TabsContent value='register'>
                             <Card className="w-[350px]">
@@ -84,8 +80,6 @@ const LoginPage = () => {
                             </Card>
                     </TabsContent>
                 </Tabs>
-
-
             </div>
         </div>
     );
