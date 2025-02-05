@@ -10,3 +10,7 @@ export type Product = {
     characteristics: string;
     stock: number;
 };
+
+export type Cart = {
+    items: Array<string>;
+}

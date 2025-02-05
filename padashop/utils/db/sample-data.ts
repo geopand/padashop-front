@@ -1,4 +1,23 @@
 const sampleData = {
+    cart: {
+        items: [
+            {
+                image: '',
+                name: "proion 1",
+                description: "description test",
+                price: "15,80",
+            },
+            {
+                image: '',
+                name: "proion 2",
+                description: "description2 test",
+                price: "42,80",
+            }
+
+        ]
+    },
+
+
     products : [
         {
             name: "VIVECHROM SUPER NEOPAL - ΑΝΟΙΧΤΗ ΑΠΟΧΡΩΣΗ ΒΑΣΗ P",
