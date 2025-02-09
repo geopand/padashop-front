@@ -6,6 +6,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Product } from "@/lib/definitions";
 import Image from "next/image";
 import { CDN_END_URL } from "@/lib/constants";
+import AddToCart from "@/components/shared/product/add-to-cart";
 
 const ProductDetailsPage = async (props: {
     params: Promise<{ slug: string }>
@@ -57,7 +58,12 @@ const ProductDetailsPage = async (props: {
                                 </div>
                                 {product.stock > 0 && (
                                     <div className="pt-2">
-                                        <Button className="w-full bg-teal-900 hover:bg-teal-600">Προσθήκη στο καλάθι</Button>
+                                        <AddToCart item={{
+                                            userId: 3,
+                                            productName: product.name,
+                                            productId: product.id,
+                                            quantity: 1
+                                        }} />
                                     </div>)
                                 }
                             </CardContent>

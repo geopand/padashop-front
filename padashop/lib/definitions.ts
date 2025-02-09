@@ -20,5 +20,11 @@ export type Category = {
     name: string;
     description: string;
     parent: number;
+}
 
+export type CartItem = {
+    productName: string;
+    userId: number;
+    productId: number;
+    quantity: number;
 }

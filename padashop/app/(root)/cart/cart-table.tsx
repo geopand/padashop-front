@@ -19,16 +19,16 @@ import sampleData from "@/utils/db/sample-data";
 
 
 
-const CartTable = ({ carti }: { cart?: Cart }) => {
+const CartTable = ({ cart }: { cart?: Cart }) => {
     const router = useRouter();
     const [isPending, startTransition] = useTransition();
-    const cart = sampleData.cart;
+    const cart1 = sampleData.cart;
 
 
     return (
         <div>
             <h1 className="py-4 h2-bold">Το καλάθι μου</h1>
-            {!cart || cart.items.length === 0 ? (
+            {!cart1 || cart1.items.length === 0 ? (
                 <div>Το καλάθι είναι άδειο.<br />
                     <div className="flex-center">
                         <Link href='/'><ArrowLeft className="inline" /> Πίσω στην κεντρική σελίδα</Link> </div>
@@ -48,7 +48,7 @@ const CartTable = ({ carti }: { cart?: Cart }) => {
                                 </TableRow>
                             </TableHeader>
                             <TableBody>
-                                {cart.items.map((item) =>
+                                {cart1.items.map((item) =>
                                     <TableRow>
                                         <TableCell className="font-medium">{item.image}</TableCell>
                                         <TableCell>{item.name}</TableCell>
