@@ -1,16 +1,24 @@
 export type Product = {
+    id: number,
     name: string;
     description: string;
     slug: string;
-    code: string;
-    category: string;
-    image: string;
-    price: string;
+    category: Category;
+    picture: string;
+    price: number;
+    status: string;
     brand: string;
-    characteristics: string;
     stock: number;
 };
 
 export type Cart = {
     items: Array<string>;
+}
+
+
+export type Category = {
+    name: string;
+    description: string;
+    parent: number;
+
 }

@@ -9,6 +9,7 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
+import { CDN_END_URL } from "@/lib/constants";
 
 const ProductCard = ({ product }: { product: Product }) => {
     return (
@@ -16,28 +17,28 @@ const ProductCard = ({ product }: { product: Product }) => {
             <CardHeader className="p-0 items-center">
                 <Link href={`/product/${product.slug}`}>
                     <Image
-                        src={product.image}
+                        src={`${CDN_END_URL}/${product.picture}`}
                         alt={product.name}
                         height={300}
                         width={300}
-                        />
+                    />
                 </Link>
             </CardHeader>
             <CardContent className="p-4 grid grap-4">
-               <div className="text-xs mb-2">{product.brand}</div>
-               <Link href={`/product/${product.slug}`}>
+                <div className="text-xs mb-2">{product.brand}</div>
+                <Link href={`/product/${product.slug}`}>
                     <h2 className="text-sm font-medium">{product.name}</h2>
-               </Link>
-               <div className="flex justify-end mr-8 mt-2">
+                </Link>
+                <div className="flex justify-end mr-8 mt-2">
                     {product.stock > 0 ? (
                         <p className="text-xl font-bold">€{product.price}</p>
                     ) : (
                         <p className="text-red-600">ΕΞΑΝΤΛΗΘΗΚΕ</p>
                     )}
-               </div>
+                </div>
             </CardContent>
             <CardFooter className="flex justify-between">
-                
+
             </CardFooter>
         </Card>
     );
