@@ -12,7 +12,7 @@ export type Product = {
 };
 
 export type Cart = {
-    items: Array<string>;
+    items: Array<CartItemDto>;
 }
 
 
@@ -21,6 +21,14 @@ export type Category = {
     description: string;
     parent: number;
 }
+
+export type CartItemDto = {
+    id: number;
+    userId: number;
+    product: Product;
+    quantity: number;
+}
+
 
 export type CartItem = {
     productName: string;

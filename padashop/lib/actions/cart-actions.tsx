@@ -21,9 +21,16 @@ export async function addToCart(userId: number, productId: number) {
     }
 }
 
-
-const calculatePrice = (items: CartItem[]) => {
-    const itemsPrice = round2(
-        items.reduce((acc, item) => acc + Number(item.price) * item.quantity, 0)
-    )
+export async function getAllCartItems(userId: number) {
+    const data = await fetch(`${BACK_END_URL}/api/cart/items/${userId}`)
+    return data.json();
 }
+
+
+
+
+// const calculatePrice = (items: CartItem[]) => {
+//     const itemsPrice = round2(
+//         items.reduce((acc, item) => acc + Number(item.price) * item.quantity, 0)
+//     )
+// }
