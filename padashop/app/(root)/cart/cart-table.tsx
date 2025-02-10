@@ -21,6 +21,7 @@ import { Button } from "@/components/ui/button";
 import { toast, useToast } from "@/hooks/use-toast";
 import { ToastAction } from "@/components/ui/toast";
 import { round2 } from "@/lib/utils";
+import { count } from "console";
 
 
 
@@ -118,11 +119,20 @@ const CartTable = ({ cart }: { cart?: Array<CartItemDto> }) => {
                                 )}
                             </TableBody>
                         </Table>
+                        <div className="flex flex-row justify-end">
+                            <div className="font-semibold">Αξία προϊόντων συμπερ. ΦΠΑ: <span className="text-teal-900 font-semibold text-xl">{cart.length && round2(cart.reduce((accumulator, c) => accumulator + c.quantity * c.product.price, 0))} €</span> </div>
+
+
+                        </div>
+                        <div className="flex flex-row justify-end mt-10">
+                            <Button variant='default' className="justify-end bg-teal-900 hover:bg-teal-600">Επόμενο <ArrowRight /></Button>
+                        </div>
 
                     </div>
                 </div>
             )
             }
+
         </div >);
 }
 
