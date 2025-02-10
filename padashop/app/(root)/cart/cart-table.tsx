@@ -20,6 +20,7 @@ import { addToCart, removeFromCart, getAllCartItems } from "@/lib/actions/cart-a
 import { Button } from "@/components/ui/button";
 import { toast, useToast } from "@/hooks/use-toast";
 import { ToastAction } from "@/components/ui/toast";
+import { round2 } from "@/lib/utils";
 
 
 
@@ -81,12 +82,12 @@ const CartTable = ({ cart }: { cart?: Array<CartItemDto> }) => {
                 <div className="grid md:grid-cols-4 md:gap-5">
                     <div className="overflow-x-auto md:col-span-3">
                         <Table>
-                            <TableCaption>A list of your recent invoices.</TableCaption>
+                            {/* <TableCaption>A list of your recent invoices.</TableCaption> */}
                             <TableHeader>
                                 <TableRow>
                                     <TableHead className="w-[100px]">Εικόνα</TableHead>
                                     <TableHead>Όνομας Προϊόντος</TableHead>
-                                    <TableHead>Ποσότητα</TableHead>
+                                    <TableHead className="text-center">Ποσότητα</TableHead>
                                     <TableHead className="text-right">Τιμή μονάδας</TableHead>
                                     <TableHead className="text-right">Σύνολο</TableHead>
                                 </TableRow>
@@ -102,7 +103,7 @@ const CartTable = ({ cart }: { cart?: Array<CartItemDto> }) => {
                                                 width={380}
                                             /></TableCell>
                                         <TableCell><Link href={`/product/${item.product.slug}`}>{item.product.name}</Link></TableCell>
-                                        <TableCell className="flex-center">
+                                        <TableCell className="flex-start">
                                             <Button type='button' variant='outline' onClick={() => handleRemoveFromCart(item)}>
                                                 <Minus className="h-2 w-2" />
                                             </Button>
@@ -111,8 +112,8 @@ const CartTable = ({ cart }: { cart?: Array<CartItemDto> }) => {
                                                 <Plus className="h-2 w-2" />
                                             </Button>
                                         </TableCell>
-                                        <TableCell>{item.product.price}</TableCell>
-                                        <TableCell className="text-right">$250.00</TableCell>
+                                        <TableCell className="text-right">{item.product.price}</TableCell>
+                                        <TableCell className="text-right">{round2(item.quantity * item.product.price)}</TableCell>
                                     </TableRow>
                                 )}
                             </TableBody>
