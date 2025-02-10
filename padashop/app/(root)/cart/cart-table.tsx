@@ -1,7 +1,7 @@
 'use client';
-import { Cart, CartItemDto } from "@/lib/definitions";
+import { Cart, CartItemDto, Product } from "@/lib/definitions";
 import { useRouter } from 'next/navigation';
-import { useTransition } from "react";
+import { useState, useTransition } from "react";
 import { ArrowRight, Loader, Minus, Plus, ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -15,15 +15,58 @@ import {
     TableRow,
 } from "@/components/ui/table"
 import { CDN_END_URL } from '@/lib/constants/index'
+import { addToCart, removeFromCart, getAllCartItems } from "@/lib/actions/cart-actions";
 
-import sampleData from "@/utils/db/sample-data";
+import { Button } from "@/components/ui/button";
+import { toast, useToast } from "@/hooks/use-toast";
+import { ToastAction } from "@/components/ui/toast";
 
 
 
 const CartTable = ({ cart }: { cart?: Array<CartItemDto> }) => {
     const router = useRouter();
     const [isPending, startTransition] = useTransition();
-    const cart1 = sampleData.cart;
+    const [status, setStatus] = useState(false);
+    const handleAddToCart = async (item: CartItemDto) => {
+        const res = await addToCart(item.userId, item.product.id)
+        if (res === true) {
+            item.quantity = item.quantity + 1
+        } else {
+            toast({
+                description: `Δεν υπάρχει άλλο απόθεμα`,
+                action: (
+                    <ToastAction className="bg-primary text-white hover:bg-gray-800" altText="Πήγαινε στο καλάθι">
+                        Εντάξει
+                    </ToastAction>
+                )
+            })
+        }
+        setStatus(!status);
+        return;
+    }
+
+    const handleRemoveFromCart = async (item: CartItemDto) => {
+        const res = await removeFromCart(item.userId, item.product.id)
+        if (res === true) {
+            item.quantity = item.quantity - 1
+        } else {
+            const cart: Array<CartItemDto> = await getAllCartItems(3);
+            const existInCart = cart.length > 0 && cart.find((x) => x.product.id === item.product.id);
+            if (!existInCart) {
+                toast({
+                    description: `Δεν υπάρχει άλλο απόθεμα`,
+                    action: (
+                        <ToastAction className="bg-primary text-white hover:bg-gray-800" altText="Πήγαινε στο καλάθι">
+                            Εντάξει
+                        </ToastAction>
+                    )
+                })
+                router.push('/cart')
+            }
+        }
+        setStatus(!status);
+        return;
+    }
 
 
     return (
@@ -59,7 +102,15 @@ const CartTable = ({ cart }: { cart?: Array<CartItemDto> }) => {
                                                 width={380}
                                             /></TableCell>
                                         <TableCell><Link href={`/product/${item.product.slug}`}>{item.product.name}</Link></TableCell>
-                                        <TableCell>{item.quantity}</TableCell>
+                                        <TableCell className="flex-center">
+                                            <Button type='button' variant='outline' onClick={() => handleRemoveFromCart(item)}>
+                                                <Minus className="h-2 w-2" />
+                                            </Button>
+                                            <span className="px-2"> {item.quantity}</span>
+                                            <Button type='button' variant='outline' onClick={() => handleAddToCart(item)}>
+                                                <Plus className="h-2 w-2" />
+                                            </Button>
+                                        </TableCell>
                                         <TableCell>{item.product.price}</TableCell>
                                         <TableCell className="text-right">$250.00</TableCell>
                                     </TableRow>

@@ -1,5 +1,5 @@
 'use client';
-import { CartItem } from "@/lib/definitions";
+import { Cart, CartItem } from "@/lib/definitions";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import { Plus } from "lucide-react";
@@ -20,6 +20,8 @@ const AddToCart = ({ item }: { item: CartItem }) => {
             });
             return;
         }
+
+        // 
 
         toast({
             description: `${item.productName} προστέθηκε στο καλάθι`,
