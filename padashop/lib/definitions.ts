@@ -1,56 +1,25 @@
 
-export type Address = {
-    name    : string;
-    number  : number;
-    city    : string;
-    state   : string;
-    zipCode : string;
-    country : string;
-}
+import { z } from 'zod';
+import {
+    cartItemDtoSchema,
+    cartItemSchema,
+    cartSchema,
+    categorySchema,
+    creditCardSchema,
+    productSchema,
+    shippingAddressSchema} from '@/lib/constants/validators';
 
-export type Product = {
-    id: number,
-    name: string;
-    description: string;
-    slug: string;
-    category: Category;
-    picture: string;
-    price: number;
-    status: string;
-    brand: string;
-    stock: number;
-};
 
-export type CartItemDto = {
-    id: number;
-    userId: number;
-    product: Product;
-    quantity: number;
-}
+export type ShippingAddress = z.infer<typeof shippingAddressSchema>;
 
-export type CartItem = {
-    productName: string;
-    userId: number;
-    productId: number;
-    quantity: number;
-}
+export type Category = z.infer<typeof categorySchema>;
 
-export type Cart = {
-    items: Array<CartItemDto>;
-}
+export type Product = z.infer<typeof productSchema>;
 
-export type Category = {
-    name: string;
-    description: string;
-    parent: number;
-}
+export type CartItemDto = z.infer<typeof cartItemDtoSchema>;
 
-export type CreditCard = {
-    owner: string;
-    cardType: string;
-    number: number;
-    expiryMonth: number;
-    expiryYear: number;
-    cvc: number;
-}
+export type CartItem = z.infer<typeof cartItemSchema>;
 
+export type Cart = z.infer<typeof cartSchema>;
+
+export type CreditCard = z.infer<typeof creditCardSchema>;
