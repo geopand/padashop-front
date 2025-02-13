@@ -4,3 +4,24 @@ export const SERVER_URL = process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhos
 export const BACK_END_URL = process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:8080";
 export const CDN_END_URL = process.env.NEXT_PUBLIC_IMAGES_CDN || "http://localhost:8080/images";
 
+
+export const CREDIT_CARD_TYPES = process.env.CREDIT_CARD_TYPES ? process.env.CREDIT_CARD_TYPES.split(',')
+: ['Mastercard', 'VISA', 'American Express', 'Diners'];
+export const DEFAULT_CARD_TYPE = process.env.DEFAULT_CARD_TYPE || 'VISA';
+
+export const shippingAddressDefaultValues = {
+    street: '',
+    city: '',
+    state: '',
+    zipCode: '',
+    country: '',
+}
+
+export const creditCardDefaultValues = {
+    owner: '',
+    cardType: '',
+    number: 1234,
+    expiryMonth: 0,
+    expiryYear: 0,
+    cvc: 123,
+}

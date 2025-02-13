@@ -6,7 +6,7 @@ const HomePage = async () => {
   const products = await getAllProducts()
 
   return (
-    <ProductList data={products} title='Τα τελευταια προϊόντα' limit={4} />
+    <ProductList data={products} title='Τα τελευταια προϊόντα' limit={14} />
   );
 }
 
