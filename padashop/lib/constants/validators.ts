@@ -9,6 +9,16 @@ export const shippingAddressSchema = z.object({
     country: z.string().min(3, "Η χώρα πρέπει να είναι τουλάχιστον 3 χαρακτήρες"),
 })
 
+
+export const creditCardSchema = z.object({
+    owner: z.string(),
+    cardType: z.string(),
+    number: z.string(),
+    expiryMonth: z.number(),
+    expiryYear: z.number(),
+    cvc: z.number()
+});
+
 export const categorySchema = z.object({
     name: z.string(),
     description: z.string(),
@@ -47,13 +57,5 @@ export const cartSchema = z.object({
     items: z.array(cartItemDtoSchema)
 });
 
-export const creditCardSchema = z.object({
-    owner: z.string(),
-    cardType: z.string(),
-    number: z.number(),
-    expiryMonth: z.number(),
-    expiryYear: z.number(),
-    cvc: z.number()
-});
 
 

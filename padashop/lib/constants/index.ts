@@ -20,7 +20,7 @@ export const shippingAddressDefaultValues = {
 export const creditCardDefaultValues = {
     owner: '',
     cardType: '',
-    number: 1234,
+    number: '',
     expiryMonth: 0,
     expiryYear: 0,
     cvc: 123,

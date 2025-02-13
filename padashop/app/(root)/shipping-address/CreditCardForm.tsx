@@ -64,8 +64,8 @@ const CreditCardForm = () => {
                                             </SelectTrigger>
                                         </FormControl>
                                         <SelectContent>
-                                            {CREDIT_CARD_TYPES.map((type) =>
-                                                <SelectItem key={type} value={type}>{type}</SelectItem>
+                                            {CREDIT_CARD_TYPES.map((type, index) =>
+                                                <SelectItem key={index} value={type}>{type}</SelectItem>
                                             )}
                                         </SelectContent>
                                     </Select>
