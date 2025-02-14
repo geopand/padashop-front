@@ -25,3 +25,10 @@ export const creditCardDefaultValues = {
     expiryYear: 0,
     cvc: 123,
 }
+
+
+export const orderDtoDefaultValues = {
+    userId: NaN,
+    creditCard: creditCardDefaultValues,
+    address: shippingAddressDefaultValues
+}

@@ -26,7 +26,6 @@ import { round2 } from "@/lib/utils";
 
 const CartTable = ({ cart }: { cart?: Array<CartItemDto> }) => {
     const router = useRouter();
-    const [isPending, startTransition] = useTransition();
     const [status, setStatus] = useState(false);
     const handleAddToCart = async (item: CartItemDto) => {
         const res = await addToCart(item.userId, item.product.id)
@@ -67,6 +66,10 @@ const CartTable = ({ cart }: { cart?: Array<CartItemDto> }) => {
         }
         setStatus(!status);
         return;
+    }
+
+    const handleOnClick = () => {
+        router.push('/shipping-address')
     }
 
 
@@ -124,7 +127,7 @@ const CartTable = ({ cart }: { cart?: Array<CartItemDto> }) => {
 
                         </div>
                         <div className="flex flex-row justify-end mt-10">
-                            <Button variant='default' className="justify-end bg-teal-900 hover:bg-teal-600">Επόμενο <ArrowRight /></Button>
+                            <Button variant='default' className="justify-end bg-teal-900 hover:bg-teal-600" onClick={() => handleOnClick()}>Επόμενο <ArrowRight /></Button>
                         </div>
 
                     </div>

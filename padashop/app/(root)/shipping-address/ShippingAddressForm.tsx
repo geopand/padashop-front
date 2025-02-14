@@ -11,7 +11,6 @@ import { Button } from "@/components/ui/button"
 import {
     Form,
     FormControl,
-    FormDescription,
     FormField,
     FormItem,
     FormLabel,
@@ -20,21 +19,24 @@ import {
 import { useToast } from "@/hooks/use-toast";
 import { shippingAddressDefaultValues } from "@/lib/constants";
 import { Input } from "@/components/ui/input";
+import { useOrder } from "@/components/order-provider";
 
 
-const ShippingAddressForm = ({ address }: { address: ShippingAddress }) => {
+const ShippingAddressForm = () => {
 
     const router = useRouter();
     // const { toast } = useToast;
+    const order = useOrder();
 
     const form = useForm<z.infer<typeof shippingAddressSchema>>({
         resolver: zodResolver(shippingAddressSchema),
-        defaultValues: address || shippingAddressDefaultValues,
+        defaultValues: shippingAddressDefaultValues,
     })
 
     const onSubmit = (values: z.infer<typeof shippingAddressSchema>) => {
-
         console.log({ values });
+        order.address = values;
+        router.push('/payment')
         return;
     }
 

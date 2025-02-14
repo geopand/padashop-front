@@ -11,9 +11,9 @@ export const shippingAddressSchema = z.object({
 
 
 export const creditCardSchema = z.object({
-    owner: z.string(),
+    owner: z.string().min(3, "Το ονοματεπώνυμο πρέπει να είναι τουλάχιστον 3 χαρακτήρες"),
     cardType: z.string(),
-    number: z.string(),
+    number: z.string().min(16, "Το μήκος του αριθμού της κάρτας δεν είναι σωστό"),
     expiryMonth: z.number(),
     expiryYear: z.number(),
     cvc: z.number()
@@ -57,5 +57,12 @@ export const cartSchema = z.object({
     items: z.array(cartItemDtoSchema)
 });
 
+
+
+export const orderDtoSchema = z.object({
+    userId: z.number(),
+    creditCard: creditCardSchema,
+    address: shippingAddressSchema
+})
 
 

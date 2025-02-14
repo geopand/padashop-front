@@ -26,17 +26,22 @@ import {
 import { useToast } from "@/hooks/use-toast";
 import { creditCardDefaultValues } from "@/lib/constants";
 import { Input } from "@/components/ui/input";
+import { useOrder } from "@/components/order-provider";
 
 
 const CreditCardForm = () => {
     const router = useRouter();
+    const order = useOrder()
+    console.log("Inside the creditcardForm")
+    console.log({ order })
 
     const form = useForm<z.infer<typeof creditCardSchema>>({
-        resolver: zodResolver(shippingAddressSchema),
+        resolver: zodResolver(creditCardSchema),
         defaultValues: creditCardDefaultValues,
     })
 
     const onSubmit = (values: z.infer<typeof creditCardSchema>) => {
+        order.creditCard = values;
         console.log({ values });
         return;
     }
@@ -98,40 +103,44 @@ const CreditCardForm = () => {
                                 </FormItem>
                             )}
                         />
-                        <FormField
-                            control={form.control}
-                            name='expiryMonth'
-                            render={({ field }) => (
-                                <FormItem className="w-full">
-                                    <FormLabel>Μήνας λήξης</FormLabel>
-                                    <FormControl>
-                                        <Input  {...field} />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
-                        <FormField
-                            control={form.control}
-                            name='expiryYear'
-                            render={({ field }) => (
-                                <FormItem className="w-full">
-                                    <FormLabel>Έτος λήξης</FormLabel>
-                                    <FormControl>
-                                        <Input  {...field} />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
+                        <div className="flex-center gap-x-4">
+                            <FormField
+                                control={form.control}
+                                name='expiryMonth'
+                                render={({ field }) => (
+                                    <FormItem className="w-1/2">
+                                        <FormLabel>Μήνας λήξης</FormLabel>
+                                        <FormControl>
+                                            <Input  {...field} />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                            <FormField
+                                control={form.control}
+                                name='expiryYear'
+                                render={({ field }) => (
+                                    <FormItem className="w-1/2">
+                                        <FormLabel>Έτος λήξης</FormLabel>
+                                        <FormControl>
+                                            <Input  {...field} />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+
+                        </div>
+
                         <FormField
                             control={form.control}
                             name='cvc'
                             render={({ field }) => (
-                                <FormItem className="w-full">
+                                <FormItem className="w-1/3 mr-auto ">
                                     <FormLabel>Κωδικός επαλήθευσης</FormLabel>
                                     <FormControl>
-                                        <Input  {...field} />
+                                        <Input {...field} />
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>
@@ -139,8 +148,8 @@ const CreditCardForm = () => {
                         />
                     </div>
                     <div className="flex gap-2">
-                        <Button type='submit' className="bg-teal-900 hover:bg-teal-600">
-                            Επόμενο
+                        <Button type='submit' className="ml-auto bg-teal-900 hover:bg-teal-600">
+                            Υποβολή Παραγγελίας
                         </Button>
                     </div>
                 </form>
