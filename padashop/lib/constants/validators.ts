@@ -65,3 +65,33 @@ export const orderDtoSchema = z.object({
 })
 
 
+export const orderItemDtoSchema = z.object({
+    id: z.number(),
+    orderId: z.number(),
+    product: productSchema,
+    quantity: z.number(),
+    price: z.number(),
+    itemStatus: z.string(),
+    shippingDate: z.number()
+})
+
+export const submittedOrderDtoSchema = z.object({
+    id: z.number(),
+    userId: z.number(),
+    items: z.array(orderItemDtoSchema),
+    ccName: z.string(),
+    cardType: z.string(),
+    ccNumber: z.string(),
+    ccExpiryMoth: z.coerce.number(),
+    ccExpiryYear: z.coerce.number(),
+    ccCVC: z.coerce.number(),
+    street: z.string(),
+    city: z.string(),
+    state: z.string(),
+    zipCode: z.string(),
+    country: z.string()
+})
+
+
+
+

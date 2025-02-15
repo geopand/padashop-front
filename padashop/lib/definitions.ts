@@ -8,6 +8,7 @@ import {
     creditCardSchema,
     orderDtoSchema,
     productSchema,
+    submittedOrderDtoSchema,
     shippingAddressSchema} from '@/lib/constants/validators';
 
 
@@ -25,4 +26,10 @@ export type Cart = z.infer<typeof cartSchema>;
 
 export type CreditCard = z.infer<typeof creditCardSchema>;
 
-export type OrderDto = z.infer<typeof orderDtoSchema>
+export type OrderDto = z.infer<typeof orderDtoSchema>;
+
+export type OrderId = {
+    id: number;
+}
+
+export type SubmittedOrder = z.infer<typeof submittedOrderDtoSchema>;

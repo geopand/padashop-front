@@ -1,4 +1,4 @@
-import { OrderDto } from "../definitions";
+import { OrderDto, OrderId } from "../definitions";
 import { BACK_END_URL } from "../constants";
 
 
@@ -20,8 +20,20 @@ export async function createOrder(order: OrderDto) {
     )
     const status = data.status;
     if (status === 200) {
-        return true
+        const orderId: OrderId = await data.json()
+        console.log("orderId is:", orderId)
+        return orderId.id;
     } else {
-        return false;
+        return -1;
     }
+}
+
+export async function fetchOrderById(id: number) {
+    const data = await fetch(`${BACK_END_URL}/api/order/${id}`,
+        {
+            method: 'GET',
+            redirect: 'follow'
+        }
+    )
+    return data.json();
 }

@@ -43,12 +43,7 @@ const CreditCardForm = () => {
 
     const handleCreateOrder = async (order: OrderDto) => {
         const res = await createOrder(order)
-        if (res === true) {
-
-        } else {
-
-        }
-        // setStatus(!status);
+        router.push(`/orders/${res}`)
         return;
     }
 
