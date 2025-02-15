@@ -15,12 +15,13 @@ import {
     TableRow,
 } from "@/components/ui/table"
 import { CDN_END_URL } from '@/lib/constants/index'
-import { addToCart, removeFromCart, getAllCartItems } from "@/lib/actions/cart-actions";
+import { addToCart, removeFromCart, deleteFromCart, getAllCartItems } from "@/lib/actions/cart-actions";
 
 import { Button } from "@/components/ui/button";
 import { toast, useToast } from "@/hooks/use-toast";
 import { ToastAction } from "@/components/ui/toast";
 import { round2 } from "@/lib/utils";
+import { CircleX } from 'lucide-react';
 
 
 
@@ -68,6 +69,13 @@ const CartTable = ({ cart }: { cart?: Array<CartItemDto> }) => {
         return;
     }
 
+    const handleDeleteFromcart = async (item: CartItemDto) => {
+        const res = await deleteFromCart(item.userId, item.product.id)
+        if (res === true) {
+            router.push('/cart')
+        }
+    }
+
     const handleOnClick = () => {
         router.push('/shipping-address')
     }
@@ -93,6 +101,7 @@ const CartTable = ({ cart }: { cart?: Array<CartItemDto> }) => {
                                     <TableHead className="text-center">Ποσότητα</TableHead>
                                     <TableHead className="text-right">Τιμή μονάδας</TableHead>
                                     <TableHead className="text-right">Σύνολο</TableHead>
+                                    <TableHead className="text-right"></TableHead>
                                 </TableRow>
                             </TableHeader>
                             <TableBody>
@@ -105,18 +114,24 @@ const CartTable = ({ cart }: { cart?: Array<CartItemDto> }) => {
                                                 height={380}
                                                 width={380}
                                             /></TableCell>
-                                        <TableCell><Link href={`/product/${item.product.slug}`}>{item.product.name}</Link></TableCell>
-                                        <TableCell className="flex-start">
-                                            <Button type='button' variant='outline' onClick={() => handleRemoveFromCart(item)}>
+                                        <TableCell><Link href={`/product/${item.product.slug}`}>{item.product.name} </Link></TableCell>
+                                        <TableCell className="flex-center pt-8">
+                                            <Button size='sm' type='button' variant='outline' onClick={() => handleRemoveFromCart(item)}>
                                                 <Minus className="h-2 w-2" />
                                             </Button>
-                                            <span className="px-2"> {item.quantity}</span>
-                                            <Button type='button' variant='outline' onClick={() => handleAddToCart(item)}>
+                                            <div className="px-2"> {item.quantity}</div>
+                                            <Button size='sm' type='button' variant='outline' onClick={() => handleAddToCart(item)}>
                                                 <Plus className="h-2 w-2" />
                                             </Button>
                                         </TableCell>
                                         <TableCell className="text-right">{item.product.price}</TableCell>
                                         <TableCell className="text-right">{round2(item.quantity * item.product.price)}</TableCell>
+                                        <TableCell className="text-right">
+                                            <Button size='sm' type='button' variant='destructive' onClick={() => handleDeleteFromcart(item)}>
+                                                <CircleX className="text-white inline-block" />
+
+                                            </Button>
+                                        </TableCell>
                                     </TableRow>
                                 )}
                             </TableBody>
