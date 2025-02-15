@@ -49,7 +49,7 @@ const ProductDetailsPage = async (props: {
                                     <div className="font-bold text-teal-800">{product.price} €</div>
                                 </div>
                                 <div className="mb-2 flex justify-between">
-                                    <div className="font-bold">Απόθεμα</div>
+                                    <div className="font-bold mr-2 ">Απόθεμα</div>
                                     {product.stock > 0 ? (
                                         <Badge variant='outline'>Διαθέσιμο</Badge>
                                     ) : (

@@ -9,14 +9,13 @@ export const shippingAddressSchema = z.object({
     country: z.string().min(3, "Η χώρα πρέπει να είναι τουλάχιστον 3 χαρακτήρες"),
 })
 
-
 export const creditCardSchema = z.object({
     owner: z.string().min(3, "Το ονοματεπώνυμο πρέπει να είναι τουλάχιστον 3 χαρακτήρες"),
     cardType: z.string(),
     number: z.string().min(16, "Το μήκος του αριθμού της κάρτας δεν είναι σωστό"),
-    expiryMonth: z.number(),
-    expiryYear: z.number(),
-    cvc: z.number()
+    expiryMonth: z.coerce.number(),
+    expiryYear: z.coerce.number(),
+    cvc: z.coerce.number()
 });
 
 export const categorySchema = z.object({

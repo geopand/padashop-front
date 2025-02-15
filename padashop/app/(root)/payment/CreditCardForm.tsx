@@ -23,10 +23,11 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select";
-import { useToast } from "@/hooks/use-toast";
 import { creditCardDefaultValues } from "@/lib/constants";
 import { Input } from "@/components/ui/input";
 import { useOrder } from "@/components/order-provider";
+import { OrderDto } from "@/lib/definitions";
+import { createOrder } from "@/lib/actions/order-actions";
 
 
 const CreditCardForm = () => {
@@ -40,9 +41,22 @@ const CreditCardForm = () => {
         defaultValues: creditCardDefaultValues,
     })
 
+    const handleCreateOrder = async (order: OrderDto) => {
+        const res = await createOrder(order)
+        if (res === true) {
+
+        } else {
+
+        }
+        // setStatus(!status);
+        return;
+    }
+
     const onSubmit = (values: z.infer<typeof creditCardSchema>) => {
         order.creditCard = values;
+        order.userId = 3;
         console.log({ values });
+        handleCreateOrder(order);
         return;
     }
 
