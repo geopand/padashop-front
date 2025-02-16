@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import { APP_NAME } from '@/lib/constants';
 import Menu from './menu';
+import MainNavMenu from "@/components/nav-menu";
+
 
 
 const Header = () => {
@@ -12,8 +14,12 @@ const Header = () => {
                         <span className="font-bold text-2xl ml-3 text-teal-800">{APP_NAME}</span>
                     </Link>
                 </div>
+                <div>
+                    <MainNavMenu />
+
+                </div>
                 <div className='space-x-2'>
-                 <Menu />
+                    <Menu />
                 </div>
             </div>
         </header>

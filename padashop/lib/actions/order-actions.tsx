@@ -1,3 +1,5 @@
+'use server';
+
 import { OrderDto, OrderId } from "../definitions";
 import { BACK_END_URL } from "../constants";
 
