@@ -25,6 +25,18 @@ export const categorySchema = z.object({
     parent: z.number()
 });
 
+export const breadcrumbItemSchema = z.object({
+    title: z.string(),
+    url: z.string(),
+    isCurrent: z.boolean(),
+});
+
+export const breadcrumbSchema = z.object({
+    items: z.array(breadcrumbItemSchema),
+});
+
+
+
 export const productSchema = z.object({
     id: z.number(),
     name: z.string(),

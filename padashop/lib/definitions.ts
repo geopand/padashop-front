@@ -1,6 +1,7 @@
 
 import { z } from 'zod';
 import {
+    breadcrumbSchema,
     cartItemDtoSchema,
     cartItemSchema,
     cartSchema,
@@ -33,3 +34,5 @@ export type OrderId = {
 }
 
 export type SubmittedOrder = z.infer<typeof submittedOrderDtoSchema>;
+
+export type BreadCrumb = z.infer<typeof breadcrumbSchema>; 

@@ -2,10 +2,11 @@ import { getProductBySlug } from "@/lib/actions/product.actions";
 import { notFound } from "next/navigation";
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
-import { Product } from "@/lib/definitions";
+import { BreadCrumb, Product } from "@/lib/definitions";
 import Image from "next/image";
 import { CDN_END_URL } from "@/lib/constants";
 import AddToCart from "@/components/shared/product/add-to-cart";
+import BreadCrump from "@/components/breadcrump";
 
 export default async function ProductDetailsPage({ params, }: {
     params: Promise<{ categorySlug: string, productSlug: string }>
@@ -17,8 +18,23 @@ export default async function ProductDetailsPage({ params, }: {
         notFound();
     }
 
+    const breadcrumb: BreadCrumb = {
+        items: [{
+            title: `${product.category.name}`,
+            url: `/${product.category.slug}`,
+            isCurrent: false
+        },
+        {
+            title: `${product.name}`,
+            url: `/${product.category.slug}/${product.slug}`,
+            isCurrent: true
+        }
+        ]
+    }
+
     return (<>
         <section>
+            <BreadCrump breadcrumb={breadcrumb} />
             <div className="grid grid-cols-1 md:grid-cols-5">
                 {/* images column */}
                 <div className="col-span-2">
