@@ -8,6 +8,11 @@ export async function getAllProducts() {
     return data.json();
 }
 
+export async function getAllProductsByCategorySlug(cSlug: string) {
+    const data = await fetch(`${BACK_END_URL}/api/products/categories/slug?slug=${cSlug}`)
+    return data.json();
+}
+
 
 export async function getProductBySlug(slug: string) {
     const data = await fetch(`${BACK_END_URL}/api/products/slug?slug=${slug}`)

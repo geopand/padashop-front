@@ -1,19 +1,18 @@
 import { getProductBySlug } from "@/lib/actions/product.actions";
 import { notFound } from "next/navigation";
 import { Badge } from '@/components/ui/badge';
-import { Button } from "@/components/ui/button";
 import { Card, CardContent } from '@/components/ui/card';
 import { Product } from "@/lib/definitions";
 import Image from "next/image";
 import { CDN_END_URL } from "@/lib/constants";
 import AddToCart from "@/components/shared/product/add-to-cart";
 
-const ProductDetailsPage = async (props: {
-    params: Promise<{ slug: string }>
+export default async function ProductDetailsPage({ params, }: {
+    params: Promise<{ categorySlug: string, productSlug: string }>
+}) {
 
-}) => {
-    const { slug } = await props.params;
-    const product: Product = await getProductBySlug(slug);
+    const { categorySlug, productSlug } = await params;
+    const product: Product = await getProductBySlug(productSlug);
     if (!product) {
         notFound();
     }
@@ -78,5 +77,3 @@ const ProductDetailsPage = async (props: {
 
     </>);
 }
-
-export default ProductDetailsPage;

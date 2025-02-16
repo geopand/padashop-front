@@ -21,6 +21,7 @@ export const creditCardSchema = z.object({
 export const categorySchema = z.object({
     name: z.string(),
     description: z.string(),
+    slug: z.string(),
     parent: z.number()
 });
 
